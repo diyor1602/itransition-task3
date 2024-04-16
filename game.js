@@ -129,7 +129,6 @@ class Table {
     this.results = ["Draw", "Win", "Lose"];
     this.moves = moves;
     this.rules = rules;
-    this.table = this.generateTable();
   }
 
   generateTable() {
@@ -157,7 +156,11 @@ class Table {
   }
 
   printTable() {
-    console.log(this.table.toString());
+    const table = this.generateTable();
+    const maxLength = Math.max(...this.moves.map((move) => move.length)) + 2;
+    table.forEach((row) => {
+      console.log(row.map((cell) => cell.padEnd(maxLength)).join(""));
+    });
   }
 }
 
